@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História de Amor</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        :root {
+            --primary-color: #ff6b81;
+            --secondary-color: #f8f9fa;
+            --accent-color: #e84a5f;
+            --text-color: #333;
+            --light-pink: #fff0f3;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-pink);
+        }
+        
+        .fancy-title {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://source.unsplash.com/1600x900/?couple,romantic') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            z-index: 1;
+        }
+        
+        .heart-divider {
+            position: relative;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .heart-divider::before {
+            content: "❤";
+            font-size: 2rem;
+            color: var(--primary-color);
+            background-color: var(--light-pink);
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .heart-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 0;
+        }
+        
+        .photo-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .photo-card:hover .photo-caption {
+            opacity: 1;
+        }
+        
+        .message-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .message-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            color: rgba(232, 74, 95, 0.1);
+            line-height: 1;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            width: 45%;
+        }
+        
+        .timeline-left {
+            left: 0;
+        }
+        
+        .timeline-right {
+            left: 55%;
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 1;
+        }
+        
+        .polaroid {
+            background-color: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: rotate(var(--rotation));
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 2;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .polaroid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .polaroid p {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .memories-container {
+            position: relative;
+            height: 500px;
+        }
+        
+        .memory {
+            position: absolute;
+            --rotation: calc(var(--i) * 5deg);
+        }
+        
+        .memory:nth-child(1) { --i: -2; top: 10%; left: 10%; }
+        .memory:nth-child(2) { --i: 1; top: 15%; left: 40%; }
+        .memory:nth-child(3) { --i: -1; top: 20%; left: 70%; }
+        .memory:nth-child(4) { --i: 2; top: 50%; left: 20%; }
+        .memory:nth-child(5) { --i: -3; top: 60%; left: 50%; }
+        .memory:nth-child(6) { --i: 1; top: 40%; left: 75%; }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 40px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                left: 80px !important;
+            }
+            
+            .timeline-dot {
+                left: 40px;
+            }
+            
+            .memories-container {
+                height: auto;
+            }
+            
+            .memory {
+                position: relative;
+                margin-bottom: 30px;
+                top: auto !important;
+                left: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container hero-content">
+            <h1 class="display-3 mb-4 fancy-title">Lula ❤ Bolsonaro</h1>
+            <p class="lead mb-5">Uma história de amor real</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="py-5" id="fotos">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fancy-title display-4">Nossas Fotos</h2>
+                <p class="lead text-muted">Momentos especiais capturados para sempre</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="photo-card">
+                        <img src='Lula-e-Bolsonaro-em-debate-1024x683.webp' alt="Beijo Apaixonado">
+                        <div class="photo-caption">
+                            <h5>Nosso primeiro encontro</h5>
+                            <p>Aquele dia no parque que mudou nossas vidas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="photo-card">
+                        <img src="bl.jpeg" alt="Beijo Apaixonado">
+                        <div class="photo-caption">
+                            <h5>O primeiro Beijo</h5>
+                            <p>Um dos dias mais memoráveis</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="photo-card">
+                        <img src="Lula-Bolsonaro.webp" alt="Unindo os dedinhos">
+                        <div class="photo-caption">
+                            <h5>O dia que doei meu dedo para Bolsonaro</h5>
+                            <p>Toda vez que olho o dedo que me falta, me lembro dele</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="heart-divider"></div>
+
+    <!-- Messages Section -->
+    <section class="py-5" id="mensagens">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fancy-title display-4">Mensagens de Amor</h2>
+                <p class="lead text-muted">Palavras que vêm do coração</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="message-card">
+                        <p class="mb-3">Você era o cumpanhero que eu queria, e também era o cumpanhero que eu precisava.</p>
+                        <p class="text-end mb-0 fancy-title fs-5">- Lula</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="message-card">
+                        <p class="mb-3">O meu amor pertencia às estrelas, e essa estrela era vermelha tá ok ?</p>
+                        <p class="text-end mb-0 fancy-title fs-5">- Bolsonaro</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="message-card">
+                        <p class="mb-3">Sinto-me realizado, nunca pensei em toda a minha vida encontrar alguém tão imbrochável quanto ele.</p>
+                        <p class="text-end mb-0 fancy-title fs-5">- Lula</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="message-card">
+                        <p class="mb-3">Sua barriga é algo fascinante, pois pego sua gordurinha e passo na farinha HAHAHAHAHAHAHAHA.</p>
+                        <p class="text-end mb-0 fancy-title fs-5">- Bolsonaro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="heart-divider"></div>
+
+    <!-- Timeline Section -->
+    <section class="py-5" id="timeline">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fancy-title display-4">Nossa História</h2>
+                <p class="lead text-muted">Os momentos que construíram nosso amor</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content timeline-left">
+                        <span class="timeline-date">7 de Outubro, 2018</span>
+                        <h4>Nosso Primeiro Embate</h4>
+                        <p>O que era pra ser uma complexa disputa presencial com um rival, acabou se tornando o início de um grande amor.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content timeline-right">
+                        <span class="timeline-date">5 de Janeiro, 2019</span>
+                        <h4>O fim de toda a inimizade</h4>
+                        <p>Neste dia a rivalidade se esvaiou, e uma intensa admiração começou a surgir de uma forma à qual eu nunca imaginei.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content timeline-left">
+                        <span class="timeline-date">3 de março, 2020</span>
+                        <h4>Uma União Não Planejada</h4>
+                        <p>Eu não tinha um lugar seguro para ficar durante a quarentena, portanto, tive que ficar na casa do Bolsonaro por somente 2 anos e 9 meses.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content timeline-right">
+                        <span class="timeline-date">1 de Janeiro, 2023</span>
+                        <h4>Primeiro Ano Novo na Praia</h4>
+                        <p>A praia de Copacabana foi o palco de toda a nossa paixão, e a multidão testemunha do nosso amor.</p>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <div class="heart-divider"></div>
+
+    <!-- Memories Section -->
+    <section class="py-5" id="memorias">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fancy-title display-4">Memórias Especiais</h2>
+                <p class="lead text-muted">Pequenos momentos que fazem nossa história única</p>
+            </div>
+            
+            <div class="memories-container">
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,coffee" alt="Café da manhã">
+                        <p>Café da manhã surpresa</p>
+                    </div>
+                </div>
+                
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,movie" alt="Cinema">
+                        <p>Noite de cinema em casa</p>
+                    </div>
+                </div>
+                
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,picnic" alt="Piquenique">
+                        <p>Piquenique no parque</p>
+                    </div>
+                </div>
+                
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,cooking" alt="Cozinhando juntos">
+                        <p>Aprendendo a cozinhar juntos</p>
+                    </div>
+                </div>
+                
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,dance" alt="Dançando">
+                        <p>Nossa primeira dança</p>
+                    </div>
+                </div>
+                
+                <div class="memory">
+                    <div class="polaroid">
+                        <img src="https://source.unsplash.com/400x300/?couple,birthday" alt="Aniversário">
+                        <p>Festa surpresa de aniversário</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">Com amor, Lula & Bolsonaro | 2025</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
