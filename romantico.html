@@ -24,7 +24,7 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-color);
-            background-color: var(--light-pink);
+            background-color: rgb(255, 197, 215);
         }
         
         .fancy-title {
@@ -57,7 +57,7 @@
             content: "❤";
             font-size: 2rem;
             color: var(--primary-color);
-            background-color: var(--light-pink);
+            background-color: rgb(255, 197, 215);
             padding: 0 20px;
             position: relative;
             z-index: 1;
@@ -224,7 +224,7 @@
             font-family: 'Dancing Script', cursive;
             text-align: center;
             margin-top: 10px;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
         
         .memories-container {
@@ -235,6 +235,13 @@
         .memory {
             position: absolute;
             --rotation: calc(var(--i) * 5deg);
+        }
+        #messagem{
+            justify-self: center;
+            }
+        #exampleModal{
+            text-align: center;
+            font-size: 25px;
         }
         
         .memory:nth-child(1) { --i: -2; top: 10%; left: 10%; }
@@ -427,48 +434,51 @@
             <div class="memories-container">
                 <div class="memory">
                     <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,coffee" alt="Café da manhã">
-                        <p>Café da manhã surpresa</p>
+                        <img src="show.webp" alt="Show de rock">
+                        <p>Nosso Primeiro Show de Rock</p>
                     </div>
                 </div>
-                
+
                 <div class="memory">
                     <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,movie" alt="Cinema">
-                        <p>Noite de cinema em casa</p>
+                        <img src="cria.webp" alt="Piquenique">
+                        <p>Nossa baratinada chavosa</p>
                     </div>
                 </div>
-                
                 <div class="memory">
                     <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,picnic" alt="Piquenique">
-                        <p>Piquenique no parque</p>
+                        <img src="faroeste.jpg" alt="Cinema">
+                        <p>Nosso tiroteio em meio ao faroeste</p>
                     </div>
                 </div>
-                
-                <div class="memory">
-                    <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,cooking" alt="Cozinhando juntos">
-                        <p>Aprendendo a cozinhar juntos</p>
-                    </div>
-                </div>
-                
-                <div class="memory">
-                    <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,dance" alt="Dançando">
-                        <p>Nossa primeira dança</p>
-                    </div>
-                </div>
-                
-                <div class="memory">
-                    <div class="polaroid">
-                        <img src="https://source.unsplash.com/400x300/?couple,birthday" alt="Aniversário">
-                        <p>Festa surpresa de aniversário</p>
-                    </div>
-                </div>
-            </div>
+           </div>
         </div>
     </section>
+    <div id="messagem">
+            <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Mensagem de Lula e Bolsonaro Para os Solteiros!
+        </button>
+    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                🤣🤣🤣🤣🤣🤣🤣🤣👉
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salve</button>
+            </div>
+            </div>
+        </div>
+        </div>
 
     <!-- Footer -->
     <footer class="py-4 text-center">
